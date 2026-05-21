@@ -1,0 +1,37 @@
+<div class="form-container">
+  <form [formGroup]="ticketForm" (ngSubmit)="onSubmit()" class="ticket-form">
+    <header>
+      <h2>Reportar Incidencia</h2>
+      <p>Proporciona los detalles del equipo y el problema técnico.</p>
+    </header>
+
+    <div class="form-group">
+      <label for="descripcion">Descripción del problema</label>
+      <textarea id="descripcion" formControlName="descripcion" placeholder="Ej: No conecta a la red Wi-Fi de la oficina..."></textarea>
+      <span class="error-text" *ngIf="isInvalid('descripcion')">La descripción es obligatoria (mín. 10 caracteres).</span>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="prioridad">Prioridad</label>
+        <select id="prioridad" formControlName="prioridad">
+          <option *ngFor="let p of prioridades" [value]="p">{{ p }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="equipoId">Equipo</label>
+        <select id="equipoId" formControlName="equipoId">
+          <option value="" disabled selected>Selecciona equipo...</option>
+          <option *ngFor="let e of equipos" [value]="e.id">{{ e.modelo }}</option>
+        </select>
+        <span class="error-text" *ngIf="isInvalid('equipoId')">Debes seleccionar un equipo.</span>
+      </div>
+    </div>
+
+    <footer class="form-actions">
+      <button type="button" class="btn-clear" (click)="ticketForm.reset({prioridad: 'MEDIA'})">Limpiar</button>
+      <button type="submit" class="btn-save" [disabled]="ticketForm.invalid">Generar Ticket</button>
+    </footer>
+  </form>
+</div>
