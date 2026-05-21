@@ -1,0 +1,41 @@
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <h1>Gestión de Incidencias - Stack Raiders</h1>
+  </header>
+
+  <section class="stats-grid">
+    <div class="stat-card abierta">
+      <h3>Abiertas</h3>
+      <p class="stat-number">{{ stats.abierta }}</p>
+    </div>
+    <div class="stat-card proceso">
+      <h3>En Proceso</h3>
+      <p class="stat-number">{{ stats.enProceso }}</p>
+    </div>
+    <div class="stat-card resuelta">
+      <h3>Resueltas</h3>
+      <p class="stat-number">{{ stats.resuelta }}</p>
+    </div>
+  </section>
+
+  <section class="incidents-section">
+    <h2>Últimas Incidencias</h2>
+    <div class="incidents-grid">
+      <article *ngFor="let inc of incidencias" class="incident-card">
+        <div class="priority-indicator" [ngClass]="getPriorityClass(inc.prioridad)"></div>
+        <div class="incident-content">
+          <div class="incident-header">
+            <span class="incident-id">#{{ inc.id }}</span>
+            <span class="incident-date">{{ inc.fechaReporte | date:'dd/MM/yyyy' }}</span>
+          </div>
+          <h3>{{ inc.descripcion }}</h3>
+          <p><strong>Usuario:</strong> {{ inc.empleado.nombre }} {{ inc.empleado.apellidos }}</p>
+          <p><strong>Equipo:</strong> {{ inc.equipo.modelo }}</p>
+          <div class="incident-footer">
+            <span class="status-badge">{{ inc.estado }}</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+</div>

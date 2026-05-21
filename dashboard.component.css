@@ -1,0 +1,110 @@
+:host {
+  --color-critica: #d32f2f; /* Rojo */
+  --color-alta: #f57c00;    /* Naranja */
+  --color-media: #fbc02d;   /* Amarillo */
+  --color-baja: #388e3c;    /* Verde */
+  --bg-card: #ffffff;
+  --text-primary: #2c3e50;
+  display: block;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7f6;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-header h1 {
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+  border-bottom: 3px solid #3498db;
+  display: inline-block;
+}
+
+/* Grid para Estadísticas */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.stat-card:hover { transform: translateY(-5px); }
+.stat-number { font-size: 2.5rem; font-weight: bold; margin: 0.5rem 0; }
+
+/* Colores Mnemotécnicos de Estado */
+.stat-card.abierta { border-left: 8px solid var(--color-critica); }
+.stat-card.proceso { border-left: 8px solid var(--color-media); }
+.stat-card.resuelta { border-left: 8px solid var(--color-baja); }
+
+/* Grid de Incidencias */
+.incidents-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+.incident-card {
+  background: var(--bg-card);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+.priority-indicator {
+  width: 12px;
+  flex-shrink: 0;
+}
+
+/* Clases de Prioridad Mnemotécnicas */
+.priority-critica { background-color: var(--color-critica); }
+.priority-alta { background-color: var(--color-alta); }
+.priority-media { background-color: var(--color-media); }
+.priority-baja { background-color: var(--color-baja); }
+
+.incident-content {
+  padding: 1rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.incident-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #7f8c8d;
+}
+
+.incident-content h3 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+}
+
+.incident-footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.status-badge {
+  background: #ecf0f1;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
