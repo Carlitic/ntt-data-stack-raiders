@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { Incidencia } from './incidencia.model';
+import { Incidencia } from '../models/incidencia.model';
+import { IncidenciaService } from '../services/incidencia.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +11,7 @@ import { Incidencia } from './incidencia.model';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  private http = inject(HttpClient);
+  private incidenciaService = inject(IncidenciaService);
   incidencias: Incidencia[] = [];
 
   // Objeto stats que requiere vuestro archivo dashboard.component.html
@@ -26,8 +26,7 @@ export class DashboardComponent implements OnInit {
   }
 
   cargarIncidencias(): void {
-    this.http.get<Incidencia[]>('http://localhost:8080/api/incidencias')
-      .subscribe({
+    this.incidenciaService.getIncidencias().subscribe({
         next: (data) => {
           this.incidencias = data;
           this.calcularEstadisticas();

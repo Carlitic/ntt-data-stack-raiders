@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Prioridad, Equipo } from './incidencia.model';
+import { PrioridadIncidencia } from '../models/incidencia.model';
+import { Equipo } from '../models/equipo.model';
+import { IncidenciaService } from '../services/incidencia.service';
 @Component({
   selector: 'app-ticket-form',
   standalone: true,
@@ -10,11 +12,12 @@ import { Prioridad, Equipo } from './incidencia.model';
   styleUrl: './ticket-form.component.css'
 })
 export class TicketFormComponent implements OnInit {
+  private incidenciaService = inject(IncidenciaService);
   ticketForm!: FormGroup;
-  prioridades: Prioridad[] = ['BAJA', 'MEDIA', 'ALTA', 'CRITICA'];
+  prioridades: PrioridadIncidencia[] = ['BAJA', 'MEDIA', 'ALTA', 'CRITICA'];
 
   // Equipos mock para el selector (esto vendría de un Servicio más adelante)
-  equipos: Equipo[] = [
+  equipos: Partial<Equipo>[] = [
     { id: 1, modelo: 'Dell Precision 5550', tipo: 'PORTATIL', estado: 'OPERATIVO' },
     { id: 2, modelo: 'Workstation Z4 G4', tipo: 'SOBREMESA', estado: 'OPERATIVO' }
   ];
@@ -32,9 +35,27 @@ export class TicketFormComponent implements OnInit {
   onSubmit(): void {
     if (this.ticketForm.valid) {
       console.log('Creando ticket:', this.ticketForm.value);
-      // Lógica de envío al servicio API REST
-      alert('Ticket reportado con éxito');
-      this.ticketForm.reset({ prioridad: 'MEDIA', equipoId: '' });
+      
+      const payload: any = {
+        descripcion: this.ticketForm.value.descripcion,
+        prioridad: this.ticketForm.value.prioridad,
+        equipo: { id: Number(this.ticketForm.value.equipoId) },
+        empleado: { id: 1 },
+        estado: 'ABIERTA',
+        fechaReporte: new Date().toISOString().split('T')[0]
+      };
+
+      this.incidenciaService.createIncidencia(payload).subscribe({
+        next: () => {
+          alert('Ticket reportado con éxito');
+          this.ticketForm.reset({ prioridad: 'MEDIA', equipoId: '' });
+          window.location.reload();
+        },
+        error: (err) => {
+          console.error('Error al guardar el ticket:', err);
+          alert('Hubo un error al guardar el ticket en la base de datos.');
+        }
+      });
     } else {
       this.ticketForm.markAllAsTouched();
     }
