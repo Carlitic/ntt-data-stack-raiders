@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/incidencias")
-@CrossOrigin(origins = "http://localhost:4200") // Enlace obligatorio con el puerto de Angular
+@CrossOrigin(origins = "*")
 public class IncidenciaController {
 
     @Autowired
