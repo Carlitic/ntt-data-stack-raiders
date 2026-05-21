@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Incidencia } from './incidencia.model';
 import { HttpClient } from '@angular/common/http';
+import { Incidencia } from './incidencia.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
   private http = inject(HttpClient);
   incidencias: Incidencia[] = [];
 
-  // Objeto de estadísticas para que el HTML no falle
+  // Objeto stats que requiere vuestro archivo dashboard.component.html
   stats = {
     abierta: 0,
     enProceso: 0,
@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
           this.incidencias = data;
           this.calcularEstadisticas();
         },
-        error: (err) => console.error('Error al cargar incidencias', err)
+        error: (err) => console.error('Error al conectar con la API:', err)
       });
   }
 
@@ -42,9 +42,9 @@ export class DashboardComponent implements OnInit {
     this.stats.resuelta = this.incidencias.filter(i => i.estado === 'RESUELTA').length;
   }
 
-  // Método que pide el HTML para dar estilo según la prioridad
+  // Método que pide vuestro HTML para pintar las insignias de colores
   getPriorityClass(prioridad: string): string {
-    switch (prioridad) {
+    switch (prioridad?.toUpperCase()) {
       case 'CRITICA': return 'priority-critica';
       case 'ALTA': return 'priority-alta';
       case 'MEDIA': return 'priority-media';
