@@ -5,9 +5,17 @@ Esta aplicación full-stack permite el registro y seguimiento de incidencias té
 ## Cómo levantar el proyecto (Quick path)
 
 > [!IMPORTANT]
-> **Ejecución simultánea obligatoria:** Para evaluar la aplicación y generar incidencias, es indispensable levantar **ambos** servicios (Backend y Frontend) a la vez, cada uno en una terminal distinta.
+> **Ejecución simultánea obligatoria:** Para evaluar la aplicación y generar incidencias, es indispensable levantar **ambos** servicios (Backend y Frontend) a la vez. Puedes hacerlo usando nuestros scripts automatizados o manualmente.
 
-### 1. Backend (Spring Boot)
+### Opción A: Scripts Automatizados (Recomendado)
+Para facilitarle la vida al evaluador, hemos incluido scripts que levantan ambos servicios de un tirón:
+- **Mac/Linux:** Ejecuta `./start.sh` desde la raíz del proyecto.
+- **Windows:** Haz doble clic en `start.bat` o ejecútalo desde CMD/PowerShell.
+
+### Opción B: Arranque Manual
+Si prefieres levantar los servicios a mano, usa dos terminales distintas:
+
+#### 1. Backend (Spring Boot)
 1. Navega a la carpeta del backend: `cd backend/jpaCustomers`
 2. **CRÍTICO:** Este proyecto requiere **Java 17**. Asegúrate de que tu terminal use la versión correcta según tu sistema operativo:
    - **Mac:** `export JAVA_HOME=$(/usr/libexec/java_home -v 17)`
