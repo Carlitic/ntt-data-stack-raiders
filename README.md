@@ -2,6 +2,16 @@
 
 Esta aplicación full-stack permite el registro y seguimiento de incidencias técnicas. Cuenta con un frontend desarrollado en Angular 17+ y un backend impulsado por Spring Boot 3 con una base de datos H2 en memoria.
 
+## 📦 Descarga desde GitHub
+
+Para clonar este repositorio y empezar a probarlo en tu máquina local, abre una terminal y ejecuta:
+
+```bash
+git clone https://github.com/Carlitic/ntt-data-stack-raiders.git
+cd ntt-data-stack-raiders
+```
+*(Nota: Asegúrate de reemplazar la URL si el repositorio se encuentra en otra organización o cuenta).*
+
 ## Cómo levantar el proyecto (Quick path)
 
 > [!IMPORTANT]
