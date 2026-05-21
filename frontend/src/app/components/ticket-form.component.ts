@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Prioridad, Equipo } from '../../models/incidencia.model';
-
+import { Prioridad, Equipo } from './incidencia.model';
 @Component({
   selector: 'app-ticket-form',
   standalone: true,
@@ -13,7 +12,7 @@ import { Prioridad, Equipo } from '../../models/incidencia.model';
 export class TicketFormComponent implements OnInit {
   ticketForm!: FormGroup;
   prioridades: Prioridad[] = ['BAJA', 'MEDIA', 'ALTA', 'CRITICA'];
-  
+
   // Equipos mock para el selector (esto vendría de un Servicio más adelante)
   equipos: Equipo[] = [
     { id: 1, modelo: 'Dell Precision 5550', tipo: 'PORTATIL', estado: 'OPERATIVO' },

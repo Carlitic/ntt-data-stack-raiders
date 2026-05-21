@@ -1,4 +1,4 @@
-import { Empleado } from './empleado.model.ts';
+import { Empleado } from './empleado.model';
 
 export type TipoEquipo = 'PORTATIL' | 'SOBREMESA' | 'SERVIDOR' | 'PERIFERICO';
 export type EstadoEquipo = 'OPERATIVO' | 'REPARACION' | 'BAJA';

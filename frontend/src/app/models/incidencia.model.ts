@@ -1,5 +1,5 @@
-import { Empleado } from './empleado.model.ts';
-import { Equipo } from './equipo.model.ts';
+import { Empleado } from './empleado.model';
+import { Equipo } from './equipo.model';
 
 export type PrioridadIncidencia = 'BAJA' | 'MEDIA' | 'ALTA' | 'CRITICA';
 export type EstadoIncidencia = 'ABIERTA' | 'EN_PROCESO' | 'RESUELTA';
