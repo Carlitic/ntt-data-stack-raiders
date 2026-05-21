@@ -52,6 +52,7 @@ Si prefieres levantar los servicios a mano, usa dos terminales distintas:
 | **Frontend** | Angular 17 (Standalone Components). Emplea Formularios Reactivos (`ReactiveFormsModule`) para la validación de tickets y un servicio (`IncidenciaService`) para comunicarse con la API. |
 | **Backend** | Spring Boot 3.0.5, Java 17, Spring Data JPA. |
 | **Base de Datos** | H2 Database (En memoria). Las tablas se crean y destruyen en cada ejecución (`ddl-auto=update`). |
+| **Configuración de Datos de Ejemplo (Entregable)** | Los datos de prueba iniciales se cargan automáticamente a través de un `CommandLineRunner` en la clase principal `JpaApplication.java`. Esto satisface el requisito de proveer un "Script SQL o configuración de datos de ejemplo" sin requerir configuración manual extra. |
 | **CORS** | El controlador `IncidenciaController.java` cuenta con `@CrossOrigin(origins = "*")` para prevenir bloqueos por diferencias sutiles entre `127.0.0.1` y `localhost` al corregir el examen. |
 | **Modelos (Refactor)**| Se unificaron los modelos en el frontend (`src/app/models/`) para evitar conflictos de tipos entre la vista y el servicio. |
 
